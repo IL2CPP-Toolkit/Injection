@@ -37,13 +37,12 @@ void CALLBACK Hook(HWND hwnd, HINSTANCE hinst, LPSTR lpszCmdLine, int nCmdShow)
 	HWND hwDispatch = GetMainWindowForProcessId(snapshot.Process().th32ProcessID);
 	if (hwDispatch != NULL)
 	{
+		SetForegroundWindow(hwDispatch);
 		std::cout << "Setting Timescale = 2.2f\n";
 		DispatchSetTimeScale(hwDispatch, 2.2f);
 		Sleep(5000);
 		std::cout << "Resetting Timescale = 1.0f\n";
 		DispatchSetTimeScale(hwDispatch, 1.0f);
-
-
 	}
 
 	system("pause");
