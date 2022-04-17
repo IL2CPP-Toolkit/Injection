@@ -16,6 +16,13 @@ union NumberValue {
 	int64_t i64;
 };
 
+union NumberValueArray {
+	float f[MaxArrayLength];
+	double d[MaxArrayLength];
+	uint64_t u64[MaxArrayLength];
+	int64_t i64[MaxArrayLength];
+};
+
 struct ClassReference
 {
 	char szNamespace[MaxNameLength];
@@ -31,7 +38,7 @@ struct MethodReference
 enum class ArgumentValueType : uint8_t
 {
 	None = 0,
-	UnsignedLong = 1,
+	Number = 1,
 	String = 2,
 	Array = 3,
 };
@@ -40,7 +47,7 @@ struct ArrayValue
 {
 	size_t cbValue;
 	uint32_t cValue;
-	size_t values[MaxArrayLength];
+	NumberValueArray values;
 };
 
 struct ArgumentValue

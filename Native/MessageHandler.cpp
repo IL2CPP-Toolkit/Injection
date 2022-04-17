@@ -9,11 +9,10 @@
 
 void CallStaticMethod(GameAssembly& gasm, const CallStaticMethodMessage& msg) noexcept
 {
-	Il2CppClassHolder klass{ GameAssembly::Instance().FindClass(msg.cls.szNamespace, msg.cls.szName) };
+	const CallMethodMessage& call{ msg.call };
+	Il2CppClassHolder klass{ GameAssembly::Instance().FindClass(call.cls.szNamespace, call.cls.szName) };
 	if (klass.Empty())
 		return;
-
-	const CallMethodMessage& call{ msg.call };
 
 	MethodInfo* pMethodInfo{ klass.FindMethod(call.fn.szName, call.fn.cParam) };
 	if (!pMethodInfo)
@@ -29,7 +28,7 @@ void CallStaticMethod(GameAssembly& gasm, const CallStaticMethodMessage& msg) no
 	{
 		switch (call.args[n].type)
 		{
-		case ArgumentValueType::UnsignedLong:
+		case ArgumentValueType::Number:
 			pArgs[n] = const_cast<void*>(reinterpret_cast<const void*>(&call.args[n].Number.u64));
 			break;
 		case ArgumentValueType::String:

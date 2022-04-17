@@ -87,6 +87,7 @@
     <ClInclude Include="Api.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameAssembly.h" />
+    <ClInclude Include="Hook.h" />
     <ClInclude Include="il2cpp-object-internals.h" />
     <ClInclude Include="il2cpp.h" />
     <ClInclude Include="Il2CppClassHolder.h" />
